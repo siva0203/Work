@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#172554">
+  <title>WorkDesk | Office Workspace</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">W</div>
+        <div>
+          <strong>WorkDesk</strong>
+          <small>Office workspace</small>
+        </div>
+      </div>
+
+      <div class="profile-mini">
+        <div class="avatar" id="avatar">A</div>
+        <div>
+          <strong id="sideName">Administrator</strong>
+          <small id="sideRole">Admin</small>
+        </div>
+      </div>
+
+      <nav id="navigation">
+        <button class="nav-link active" data-page="overview">▦ <span>Overview</span></button>
+        <button class="nav-link" data-page="tasks">☷ <span>My Tasks</span></button>
+        <button class="nav-link admin-only" data-page="staff">♙ <span>Staff Management</span></button>
+        <button class="nav-link admin-only" data-page="alltasks">▤ <span>All Staff Tasks</span></button>
+        <button class="nav-link" data-page="reports">▥ <span>Monthly Reports</span></button>
+        <button class="nav-link" data-page="notifications">✉ <span>Notifications</span></button>
+        <button class="nav-link admin-only" data-page="data">▣ <span>Data Manager</span></button>
+      </nav>
+
+      <button class="logout" id="logoutBtn">↪ <span>Sign out</span></button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn">☰</button>
+        <div>
+          <span class="eyebrow">WORKSPACE</span>
+          <h1 id="pageTitle">Overview</h1>
+        </div>
+        <div class="top-actions">
+          <span class="today" id="todayLabel"></span>
+          <div class="avatar small" id="topAvatar">A</div>
+        </div>
+      </header>
+
+      <section id="loginView" class="login-wrap">
+        <div class="login-card">
+          <div class="brand-mark large">W</div>
+          <p class="eyebrow">WELCOME TO YOUR WORKSPACE</p>
+          <h2>Sign in to WorkDesk</h2>
+          <p class="muted">Organize, track and review daily work.</p>
+
+          <form id="loginForm">
+            <label for="username">Username</label>
+            <input id="username" autocomplete="username"
+                   placeholder="Enter username" required>
+
+            <label for="password">Password</label>
+            <input id="password" type="password"
+                   autocomplete="current-password"
+                   placeholder="Enter password" required>
+
+            <p class="error" id="loginError"></p>
+            <button class="primary full" type="submit">
+              Sign in →
+            </button>
+          </form>
+
+          <div class="demo-note">
+            <strong>Prototype login</strong><br>
+            Admin: <code>admin</code> / <code>demo123</code><br>
+            Staff: <code>staff1</code> / <code>demo123</code>
+          </div>
+
+          <p class="tiny muted">
+            Demonstration credentials only. Not secure authentication.
+          </p>
+        </div>
+
+        <div class="login-art">
+          <div class="art-orb orb-one"></div>
+          <div class="art-orb orb-two"></div>
+          <div class="art-content">
+            <span class="pill light-pill">PLAN · TRACK · COMPLETE</span>
+            <h2>Make every<br>workday count.</h2>
+            <p>Stay focused, keep tasks moving and make progress visible.</p>
+            <div class="art-stat">
+              <span>✓</span>
+              <div>
+                <strong>One workspace</strong>
+                <small>Tasks, reviews and reports together</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="appView" class="hidden">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow">YOUR WORKSPACE</p>
+            <h2 id="welcomeTitle">Welcome back</h2>
+            <p class="muted" id="welcomeSubtitle">
+              Here is your work at a glance.
+            </p>
+          </div>
+          <button class="primary" id="newTaskBtn">＋ Create task</button>
+        </div>
+
+        <div class="stat-grid" id="statGrid"></div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Recent tasks</h3>
+                <p class="muted">Your latest task activity</p>
+              </div>
+              <button class="text-btn" data-goto="tasks">View all →</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Task</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                  </tr>
+                </thead>
+                <tbody id="recentTasks"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel side-panel">
+            <div class="panel-heading">
+              <div>
+                <h3>Quick notes</h3>
+                <p class="muted">Workspace reminders</p>
+              </div>
+            </div>
+
+            <div class="note-item">
+              <span class="note-icon blue">◎</span>
+              <div>
+                <strong>Keep tasks updated</strong>
+                <p>Record progress and pending reasons clearly.</p>
+              </div>
+            </div>
+
+            <div class="note-item">
+              <span class="note-icon green">✓</span>
+              <div>
+                <strong>Rate completed work</strong>
+                <p>Submit a self-rating when completing a task.</p>
+              </div>
+            </div>
+
+            <div class="note-item">
+              <span class="note-icon amber">▤</span>
+              <div>
+                <strong>Monthly reports</strong>
+                <p>Export your summary in PDF or Excel.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <article class="panel page-panel hidden" id="pageContent"></article>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
